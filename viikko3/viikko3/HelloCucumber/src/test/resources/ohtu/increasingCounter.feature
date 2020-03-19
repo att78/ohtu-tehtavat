@@ -16,3 +16,5 @@ Feature: As a user I want to be able to increase the counter value
     And it is incremented
     And it is incremented
     Then the value should be 3
+  
+  
