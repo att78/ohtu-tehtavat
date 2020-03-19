@@ -43,6 +43,16 @@ public class Stepdefs {
     @Then("system will respond with {string}")
     public void systemWillRespondWith(String expectedOutput) {
         assertTrue(io.getPrints().contains(expectedOutput));
-    }    
+    }
+    
+    @When("it is reset")
+    public void itIsReset() {
+        // Write code here that turns the phrase above into concrete actions
+        
+        throw new cucumber.api.PendingException();
+    }
+
+
+    
 
 }
