@@ -39,7 +39,29 @@ public class AuthenticationService {
     }
 
     private boolean invalid(String username, String password) {
-        // validity check of username and password
+        // validity check of username and password        
+        if (username.length() < 3) {
+            return true;
+        }
+
+        if (!username.matches("[a-z]*")) {
+            return true;
+        }
+
+        if (password.length() < 8) {
+            return true;
+        }
+
+        boolean onlyAlpha = true;
+        for (int i = 0; i < password.length(); i++) {
+            if (!Character.isAlphabetic(password.charAt(i))) {
+                onlyAlpha = false;
+                break;
+            }
+        }
+        if (onlyAlpha) {
+            return true;
+        }
 
         return false;
     }
