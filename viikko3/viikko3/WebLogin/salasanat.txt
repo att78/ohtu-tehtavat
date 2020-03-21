@@ -1,3 +1,0 @@
-pekka;akkep
-jukka;akkuj
-kissa;kissa

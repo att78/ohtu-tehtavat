@@ -12,7 +12,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class Stepdefs {
+    
     //WebDriver driver = new ChromeDriver();
+    //System.setProperty("webdriver.chrome.driver", "/home/tallbera/chromedriver/chromedriver");
     WebDriver driver = new HtmlUnitDriver();
     String baseUrl = "http://localhost:4567";
     
@@ -58,7 +60,67 @@ public class Stepdefs {
     public void tearDown(){
         driver.quit();
     }
+    
+    @Given("command new user is selected")
+    public void commandNewUserIsSelected() {
         
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));       
+        element.click();   
+              
+    }
+
+    @When("a valid username {string} and password {string} and matching password confirmation are entered")
+    public void aValidUsernameAndPasswordAndMatchingPasswordConfirmationAreEntered(String string, String string2) {
+        
+        WebElement element;
+        element = driver.findElement(By.name("username"));
+        element.sendKeys(string);
+        element = driver.findElement(By.name("password"));
+        element.sendKeys(string2);
+        element = driver.findElement(By.name("passwordConfirmation"));
+        element.sendKeys(string2);
+        element = driver.findElement(By.name("signup"));
+        
+        element.submit();
+        
+    }
+
+    @Then("a new user is created")
+    public void aNewUserIsCreated() {
+        // Write code here that turns the phrase above into concrete actions
+        pageHasContent("continue to application mainpage");
+        
+        
+    }
+
+    @Then("user is not created and error {string} is reported")
+    public void userIsNotCreatedAndErrorIsReported(String string) {
+        // Write code here that turns the phrase above into concrete actions        
+        pageHasContent(string);
+    }
+    
+        @When("a valid username {string} and password {string} and non-matching confirmation password {string} are entered")
+    public void aValidUsernameAndPasswordAndNonMatchingConfirmationPasswordAreEntered(String string, String string2, String string3) {
+        // Write code here that turns the phrase above into concrete actions
+        WebElement element;
+        element = driver.findElement(By.name("username"));
+        element.sendKeys(string);
+        element = driver.findElement(By.name("password"));
+        element.sendKeys(string2);
+        element = driver.findElement(By.name("passwordConfirmation"));
+        element.sendKeys(string3);
+        element = driver.findElement(By.name("signup"));
+        
+        element.submit();
+
+        
+    }
+
+    
+    
+
+           
     /* helper methods */
  
     private void pageHasContent(String content) {
@@ -74,4 +136,17 @@ public class Stepdefs {
         element = driver.findElement(By.name("login"));
         element.submit();  
     } 
+    
+        @When("incorrect username {string} and password {string} are given")
+    public void incorrectUsernameAndPasswordAreGiven(String string, String string2) {
+        // Write code here that turns the phrase above into concrete actions
+      logInWith(string, string2);  
+        
+      
+    }
+    
+    
+    
+
+    
 }
