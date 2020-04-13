@@ -17,7 +17,7 @@ public class Pankki implements PankkiInterface {
     public boolean tilisiirto(String nimi, int viitenumero, String tililta, String tilille, int summa) {
         kirjanpito.lisaaTapahtuma("tilisiirto: tililtä " + tilille + " tilille " + tilille
                 + " viite " + viitenumero + " summa " + summa + "e");
-
+        //System.out.println("nimi: "+nimi+"viitenumero: "+viitenumero+"tilita: "+tilille+ ",summa"+ summa);
         // täällä olisi koodi joka ottaa yhteyden pankin verkkorajapintaan
         return true;
     }
